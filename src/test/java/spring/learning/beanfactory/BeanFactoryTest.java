@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import spring.learning.beans.Coffee;
 import spring.learning.beans.Milk;
+import spring.learning.domain.Person;
 
 import java.io.IOException;
 
@@ -87,9 +88,9 @@ public class BeanFactoryTest {
 
     @Test
     public void defaultList() throws IOException {
-        ClassPathResource cp = new ClassPathResource("beanFactoryTest.xml");
+        Resource cp = new ClassPathResource("beanFactoryTest.xml");
 
-        Resource r =  cp;
+        Resource r = cp;
 
         System.out.println(r.getURL());
         System.out.println(r.getURI());
@@ -100,14 +101,33 @@ public class BeanFactoryTest {
         System.out.println(r.isReadable());
 
 
+        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+
+        int i = reader.loadBeanDefinitions(cp);
+        System.out.println("i=" + i);
+        System.out.println(factory.isTypeMatch("coffee", Coffee.class));
+        System.out.println(factory.isTypeMatch("coffee", Milk.class));
+    }
+
+
+    @Test
+    public void person() {
+        Resource resource = new ClassPathResource("person.xml");
 
 
         DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
 
-        reader.loadBeanDefinitions(cp);
+        int i = reader.loadBeanDefinitions(resource);
 
-        System.out.println(factory.isTypeMatch("coffee", Coffee.class));
-        System.out.println(factory.isTypeMatch("coffee", Milk.class));
+        Person p = (Person) factory.getBean("person");
+        Person p2 = (Person) factory.getBean("person");
+
+        System.out.println(p.say());
+        System.out.println(p == p2);
+
+        System.out.println("i=" + i);
+        System.out.println(factory.isTypeMatch("person", Person.class));
     }
 }
