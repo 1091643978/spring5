@@ -1,5 +1,6 @@
 package spring.learning.beanfactory;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -20,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  * @date 2019-11-13 09:53
  * @description
  **/
-
+@Slf4j
 public class BeanFactoryTest {
 
     @Test
@@ -123,11 +124,19 @@ public class BeanFactoryTest {
 
         Person p = (Person) factory.getBean("person");
         Person p2 = (Person) factory.getBean("person");
+//        Person p3 = (Person) factory.getBean("person3");
+//        Person p4 = (Person) factory.getBean("person3");
 
-        System.out.println(p.say());
+
+        log.info(p.say());
         System.out.println(p == p2);
+
+//        System.out.println(p2==p3);
+//        System.out.println(p3==p4);
 
         System.out.println("i=" + i);
         System.out.println(factory.isTypeMatch("person", Person.class));
     }
+
+
 }
