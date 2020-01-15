@@ -16,6 +16,8 @@ import spring.condition.MacCondition;
 import spring.condition.MySelector;
 import spring.condition.MyRegistrar;
 import spring.condition.WindowsCondition;
+import spring.regist.MyFactoryBean;
+
 @Import({Color.class, Red.class, MySelector.class,MyRegistrar.class})
 @Conditional({MacCondition.class})
 @Configuration
@@ -60,6 +62,11 @@ public class MyConfig {
     public Student jobs(){
         return new Student(55, "Jobs");
 
+    }
+
+    @Bean
+    public MyFactoryBean myFactoryBean(){
+        return new MyFactoryBean();
     }
 
 

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.env.ConfigurableEnvironment;
 import spring.anns.MyConfig;
 import spring.anns.Student;
+import spring.regist.MyFactoryBean;
 
 import java.util.Arrays;
 
@@ -18,12 +19,37 @@ import java.util.Arrays;
 public class BillTest {
 
     @Test
+    public void testImport() {
+
+        ApplicationContext beanFactory = new AnnotationConfigApplicationContext(MyConfig.class);
+
+        printBeans(beanFactory.getBeanDefinitionNames());
+
+        Object myFactoryBean = beanFactory.getBean("myFactoryBean");
+        Object b2 = beanFactory.getBean("myFactoryBean");
+        Object b3 = beanFactory.getBean("&myFactoryBean");
+
+        System.out.println("bean的类型: " + myFactoryBean.getClass());
+        System.out.println(myFactoryBean == b2);
+        System.out.println("bean的类型: " + b3.getClass());
+
+        MyFactoryBean b4= (MyFactoryBean)b3;
+        try {
+          Object o5 =  b4.getObject();
+            System.out.println("o5的类型: " + o5.getClass());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
     public void getBD() {
 
         ApplicationContext beanFactory = new AnnotationConfigApplicationContext(MyConfig.class);
 
         BeanDefinition
-                 bd = ((AnnotationConfigApplicationContext) beanFactory).getBeanDefinition("appleNewton");
+                bd = ((AnnotationConfigApplicationContext) beanFactory).getBeanDefinition("appleNewton");
 
         System.out.println(bd.isSingleton());
         System.out.println(bd.isPrototype());
