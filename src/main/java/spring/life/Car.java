@@ -6,6 +6,16 @@ package spring.life;
  * @description
  **/
 public class Car {
+    private String band;
+
+    public String getBand() {
+        return band;
+    }
+
+    public void setBand(String band) {
+        this.band = band;
+    }
+
     public Car() {
         System.out.println("car constuctor...");
     }
@@ -18,5 +28,10 @@ public class Car {
         System.out.println("car ... destroy...");
     }
 
-
+//    @Override
+//    public String toString() {
+//        return "Car{" +
+//                "band='" + band + '\'' +
+//                '}';
+//    }
 }
