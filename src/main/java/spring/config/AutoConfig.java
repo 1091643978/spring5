@@ -3,6 +3,7 @@ package spring.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import spring.dao.BookDao;
 
 /**
@@ -15,6 +16,7 @@ import spring.dao.BookDao;
 @Configuration
 public class AutoConfig {
 
+    @Primary
     @Bean("bookDao2")
     public BookDao bookDao() {
          BookDao b =  new BookDao();

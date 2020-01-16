@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import spring.dao.BookDao;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
 /**
  * @author liubo
  * @date 2020-01-16 10:06
@@ -16,10 +19,12 @@ import spring.dao.BookDao;
 public class BookService {
 
 //    @Qualifier("bookDao")
-    @Autowired
-    private BookDao bookDao2;
+//    @Autowired
+//    @Resource(name = "bookDao2")
+    @Inject
+    private BookDao bookDao;
 
     public void print(){
-        log.info("===> bookDao:{}",bookDao2);
+        log.info("===> bookDao:{}",bookDao);
     }
 }

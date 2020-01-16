@@ -22,11 +22,11 @@ public class BookTest {
 
         BookService h = context.getBean(BookService.class);
 
-//        BookDao dao = context.getBean(BookDao.class);
+        BookDao dao = context.getBean(BookDao.class);
         log.info("===>{}", h);
         h.print();
 
-//        log.info("===> equals:{}", dao);
+        log.info("===> equals:{}", dao);
         context.close();
     }
 
