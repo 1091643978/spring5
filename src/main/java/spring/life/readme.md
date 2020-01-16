@@ -22,3 +22,11 @@ singleton object,when container start, create it.
 
 1. specify init and destroy method
       
+2. InitializingBean DisposableBean interface
+ 
+
+3. JSR250: @PostConstruct @PreDestroy
+
+4. BeanPostProcessor
+
+       

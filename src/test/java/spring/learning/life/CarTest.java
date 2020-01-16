@@ -19,7 +19,7 @@ public class CarTest {
     public void test() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CarConfig.class);
         System.out.println("container created...");
-        printBeans(context);
+//        printBeans(context);
 
         Car c = (Car)context.getBean("car");
         context.close();
