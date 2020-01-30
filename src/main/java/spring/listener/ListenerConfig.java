@@ -1,4 +1,4 @@
-package spring.ext;
+package spring.listener;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,12 +15,9 @@ import spring.life.Dog;
  *
  *
  **/
-@ComponentScan("spring.ext")
+@ComponentScan("spring.listener")
 @Configuration
-public class ExtConfig {
+public class ListenerConfig {
 
-    @Bean
-    public Dog dog(){
-        return new Dog();
-    }
+
 }
